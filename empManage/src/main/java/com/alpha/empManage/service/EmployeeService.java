@@ -1,5 +1,9 @@
 package com.alpha.empManage.service;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.alpha.empManage.dto.EmployeeDto;
@@ -33,6 +37,16 @@ public class EmployeeService {
     	      new ResourceNotFoundException("Employee not found with id: " + employeeId));
     	return EmployeeMapper.mapToEmployeeDto(employee);
     }
+    
+    //GET ALL DETAILS
+    public List<EmployeeDto> getAllEmployees()
+    {
+            return repository.findAll()
+                    .stream()
+                    .map(EmployeeMapper::mapToEmployeeDto)
+                    .collect(Collectors.toList());
+        }
+    }
 	
 
-}
+

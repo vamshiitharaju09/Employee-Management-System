@@ -1,5 +1,7 @@
 package com.alpha.empManage.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +33,13 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public EmployeeDto getEmployeeById(@PathVariable ("id") Long employeeId) {
         return service.getEmployeeId(employeeId);
+    }
+    
+    //GET ALL
+    @GetMapping
+    public List<EmployeeDto> getAllEmployees()
+    {
+    	return service.getAllEmployees();
     }
 
 }
