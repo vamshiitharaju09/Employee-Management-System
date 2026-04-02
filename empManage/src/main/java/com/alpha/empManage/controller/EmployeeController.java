@@ -2,6 +2,7 @@ package com.alpha.empManage.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,14 @@ public class EmployeeController {
     public EmployeeDto updateEmployees(@PathVariable Long id,
             @RequestBody EmployeeDto dto) {
                return service.updateEmployee(id, dto);
-}
+    }
+    
+    
+    //DELETE EMPLOYEE BY ID
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable Long id)
+    {
+    	service.deleteEmployee(id);
+    	return "Employee deleted successfully";
+    }
 }

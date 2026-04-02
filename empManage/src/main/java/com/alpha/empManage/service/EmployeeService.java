@@ -47,7 +47,7 @@ public class EmployeeService {
                     .collect(Collectors.toList());
         }
     
-    //UPDATE EMPLOYEE
+    //UPDATE EMPLOYEE BY ID
      public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployee)
      {
     	Employee existing =repository.findById(employeeId)
@@ -57,6 +57,13 @@ public class EmployeeService {
     	existing.setEmail(updatedEmployee.getEmail());
     	Employee updated = repository.save(existing);
     	return EmployeeMapper.mapToEmployeeDto(updated);
+    	
+     }
+     
+    //DELETE EMPLOYEE BY ID
+     public void deleteEmployee(Long employeeId)
+     {
+    	 repository.deleteById(employeeId);
      }
     }
 	
