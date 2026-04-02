@@ -46,6 +46,18 @@ public class EmployeeService {
                     .map(EmployeeMapper::mapToEmployeeDto)
                     .collect(Collectors.toList());
         }
+    
+    //UPDATE EMPLOYEE
+     public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployee)
+     {
+    	Employee existing =repository.findById(employeeId)
+    			 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
+    	existing.setFirstName(updatedEmployee.getFirstName());
+    	existing.setLastName(updatedEmployee.getLastName());
+    	existing.setEmail(updatedEmployee.getEmail());
+    	Employee updated = repository.save(existing);
+    	return EmployeeMapper.mapToEmployeeDto(updated);
+     }
     }
 	
 
